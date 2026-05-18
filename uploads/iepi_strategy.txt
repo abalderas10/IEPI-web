@@ -1,0 +1,21 @@
+Estrategia Web para IEPI - Basada en Mejores Prácticas Industriales
+
+Público Objetivo: Ingenieros de procura, gerentes de mantenimiento, directores de proyectos industriales y compradores B2B.
+
+Secciones Clave Identificadas:
+1. Inicio (Hero con foto real de planta + Propuesta de valor clara).
+2. Servicios (Desglose técnico: Eléctrico, Instrumentación, Seguridad).
+3. Experiencia/Proyectos (Casos de éxito, logos de clientes destacados como PEMEX, CFE, Nestlé).
+4. Certificaciones y Calidad (ISO, Dossier de calidad, cumplimiento normativo).
+5. Nosotros (Trayectoria de 35 años, Ing. Víctor Vargas Carrillo).
+6. Contacto/Cotización (Formulario específico para RFQ con opción de adjuntar archivos).
+
+Elementos Visuales Recomendados:
+- Paleta de colores: Azul industrial (confianza), Gris acero (tecnología), Blanco (limpieza/profesionalismo).
+- Imágenes: Uso obligatorio de las fotos recuperadas (img-007, img-009, img-013, img-015) para demostrar autenticidad.
+- Tipografía: Sans-serif moderna y legible (ej. Inter, Roboto o Montserrat).
+
+Estrategia de Contenido:
+- Enfoque en soluciones técnicas y cumplimiento de estándares de seguridad y medio ambiente.
+- Inclusión de palabras clave: "instrumentación industrial", "electrosistemas", "instalaciones eléctricas de media tensión", "sistemas de fuego y gas México".
+- Facilitar la descarga de la presentación curricular (PDF original).

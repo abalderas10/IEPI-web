@@ -1,0 +1,44 @@
+IEPI - Instrumentación y Electrosistemas en Procesos Industriales, S.A. de C.V.
+
+Información General:
+- Dirección: Paseo de Francia N° 129 Col. Lomas Verdes 3ra. sección, Naucalpan de Juárez, C.P. 53125, Estado de México.
+- Director General: Ing. Víctor Vargas Carrillo.
+- Teléfonos: (55) 26 37 60 40, (55) 36 17 44 59.
+- Experiencia: Más de 35 años en el sector industrial.
+
+Propósito y Valores:
+- Objetivo: Proporcionar servicios y productos que cumplan con necesidades y expectativas de clientes.
+- Compromiso: Calidad, seguridad, medio ambiente y responsabilidad social.
+- Visión: Ser una empresa reconocida en eficiencia, resultados y satisfacción del cliente.
+
+Especialidades:
+1. Instalaciones Eléctricas: Tableros (baja y media tensión), charolas, tubería conduit, cableados, red de tierras, soportería.
+2. Instalaciones de Instrumentación: Cajas de conexiones, tableros de control, sistemas de control distribuido (DCS), calibración, pruebas de lazos, fibra óptica.
+3. Instalación de Sistemas de Seguridad: Sistemas de fuego y gas, paros de emergencia, detección de humo, supresión de fuego.
+4. Servicios adicionales: Calibración con equipo certificado, dibujos "As-Built", dossier de calidad.
+
+Sectores de atención:
+Alimentaria, automotriz, cementera, energética, farmacéutica, papelera, petroquímica y química.
+
+Clientes principales destacados:
+CFE, PEMEX, ABB, Abengoa, Acciona, Alstom, Avanzia, Basf, Bayer, Chrysler, Ford, Glaxo, Kimberly Clark, Nestlé, Pfizer, Sanofi, Schneider, Telvent, Vidrio Saint Gobain.
+
+Proyectos relevantes:
+- Centrales de CFE (Hermosillo, El Sauz, Rio Bravo).
+- Campos Solares (Agua Prieta II, Puerto Libertad, Aura III, Villanueva).
+- Refinerías (Salamanca, Ciudad Madero).
+- Plantas industriales (Nestlé, Pfizer, Chrysler, Ford).
+- Instalaciones en plataformas marinas de PEMEX.
+
+Imágenes Recuperadas (Ruta: /home/ubuntu/iepi_images/):
+- img-007.png: Instalaciones de tanques y tuberías industriales con válvulas.
+- img-009.png: Personal trabajando en instalaciones de tubería y cableado.
+- img-013.png: Personal realizando pruebas y calibración de instrumentos en planta.
+- img-015.png: Detalle de instrumentación instalada en campo (sensor/transmisor).
+- img-005.png: Imagen de edificio corporativo/industrial (posible referencia de infraestructura).
+- Otras imágenes (016-040): Contienen más detalles de obras, personal y equipos.
+
+Mejores Prácticas de Competencia (Investigación):
+- Sitios web enfocados en: Automatización, Mantenimiento, Ingeniería Eléctrica e Instrumentación.
+- Elementos clave: Portafolio de proyectos, certificaciones, marcas con las que trabajan (ABB, Schneider, etc.), y formularios de contacto claros.
+- Estética: Profesional, industrial, uso de colores azules y grises, fotos reales de alta calidad.

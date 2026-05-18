@@ -1,0 +1,1073 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>IEPI — Instrumentación y Electrosistemas en Procesos Industriales</title>
+<meta name="description" content="Más de 35 años de ingeniería de precisión en instalaciones eléctricas, instrumentación y sistemas de seguridad para la industria mexicana." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,500&display=swap" rel="stylesheet">
+
+<style>
+/* ---------- Tokens ---------- */
+:root{
+  --bg:        oklch(0.97 0.005 80);
+  --bg-2:      oklch(0.93 0.006 80);
+  --bg-3:      oklch(0.88 0.006 80);
+  --ink:       oklch(0.17 0.012 255);
+  --ink-2:     oklch(0.32 0.012 255);
+  --ink-3:     oklch(0.55 0.010 255);
+  --rule:      oklch(0.85 0.006 80);
+  --rule-2:    oklch(0.78 0.008 80);
+  --accent:    oklch(0.70 0.180 48);
+  --accent-2:  oklch(0.58 0.190 42);
+  --steel:     oklch(0.40 0.040 245);
+  --good:      oklch(0.66 0.150 145);
+  --paper:     #f5f2ec;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --sans: "Inter Tight", system-ui, -apple-system, Segoe UI, sans-serif;
+  --serif:"Fraunces", Georgia, serif;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+html{scroll-behavior:smooth}
+body{overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+
+/* ---------- Helpers ---------- */
+.mono{font-family:var(--mono);letter-spacing:.02em}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)}
+.rule{height:1px;background:var(--rule);border:0;width:100%}
+.container{width:min(1320px, 100% - 48px); margin:0 auto}
+@media (max-width:700px){.container{width:calc(100% - 28px)}}
+
+.section{padding:120px 0;position:relative}
+.section-head{display:grid;grid-template-columns: 1fr 2fr;gap:48px;align-items:end;padding-bottom:48px;border-bottom:1px solid var(--rule)}
+.section-head h2{font-family:var(--sans);font-weight:600;font-size:clamp(38px,5vw,72px);letter-spacing:-0.03em;line-height:.98;margin:.2em 0 0}
+.section-head h2 em{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--ink-2)}
+.section-head p{max-width:540px;color:var(--ink-2);font-size:18px;line-height:1.5;margin:0}
+.section-num{display:flex;align-items:baseline;gap:14px;font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)}
+.section-num b{color:var(--accent);font-weight:600}
+@media (max-width:820px){.section-head{grid-template-columns:1fr;gap:18px}.section{padding:80px 0}}
+
+/* ---------- Utility top bar ---------- */
+.topbar{
+  background:var(--ink);color:var(--bg);font-family:var(--mono);font-size:11.5px;
+  letter-spacing:.04em;padding:8px 24px;display:flex;justify-content:space-between;gap:18px;align-items:center
+}
+.topbar .dot{width:7px;height:7px;border-radius:50%;background:var(--good);display:inline-block;margin-right:8px;box-shadow:0 0 0 0 oklch(0.66 0.15 145 / .6);animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 oklch(0.66 0.15 145 / .6)}80%,100%{box-shadow:0 0 0 9px oklch(0.66 0.15 145 / 0)}}
+.topbar .group{display:flex;gap:22px;align-items:center;opacity:.92}
+.topbar .group span{display:inline-flex;align-items:center;gap:8px}
+@media (max-width:760px){.topbar{font-size:10.5px;padding:8px 14px}.topbar .group:nth-child(2){display:none}}
+
+/* ---------- Nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:50;background:color-mix(in oklab, var(--bg) 88%, transparent);
+  backdrop-filter:saturate(140%) blur(14px);
+  border-bottom:1px solid var(--rule)
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;gap:18px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.02em}
+.brand .mark{width:34px;height:34px;display:grid;place-items:center;background:var(--ink);color:var(--bg);font-family:var(--mono);font-size:13px;font-weight:600;border-radius:2px;position:relative}
+.brand .mark::before{content:"";position:absolute;inset:3px;border:1px solid color-mix(in oklab, var(--bg) 30%, transparent)}
+.brand .name{font-size:17px}
+.brand .sub{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);letter-spacing:.12em;text-transform:uppercase;display:block;margin-top:1px}
+.nav-links{display:flex;gap:6px;align-items:center}
+.nav-links a{padding:8px 14px;font-size:14px;color:var(--ink-2);border-radius:2px;transition:color .2s}
+.nav-links a:hover{color:var(--ink);background:var(--bg-2)}
+.cta{
+  background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:2px;font-size:13.5px;font-weight:500;
+  display:inline-flex;align-items:center;gap:10px;border:1px solid var(--ink);transition:transform .15s, background .2s
+}
+.cta:hover{background:var(--accent);border-color:var(--accent);color:var(--ink)}
+.cta .arrow{transition:transform .25s}
+.cta:hover .arrow{transform:translateX(3px)}
+.cta.outline{background:transparent;color:var(--ink);border-color:var(--ink)}
+.cta.outline:hover{background:var(--ink);color:var(--bg)}
+@media (max-width:960px){.nav-links{display:none}}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;color:var(--bg);overflow:hidden;background:var(--ink)}
+.hero .bg{position:absolute;inset:0;z-index:0}
+.hero .bg img{width:100%;height:100%;object-fit:cover;filter:saturate(.92) contrast(1.02)}
+.hero .bg::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(180deg, oklch(0.17 0.01 255 / .25) 0%, oklch(0.17 0.01 255 / .15) 40%, oklch(0.17 0.01 255 / .85) 100%),
+  linear-gradient(90deg, oklch(0.17 0.01 255 / .55) 0%, oklch(0.17 0.01 255 / 0) 60%);
+}
+.hero .grid-overlay{position:absolute;inset:0;z-index:1;background-image:
+  linear-gradient(to right, color-mix(in oklab, white 8%, transparent) 1px, transparent 1px),
+  linear-gradient(to bottom, color-mix(in oklab, white 8%, transparent) 1px, transparent 1px);
+  background-size: 80px 80px; mix-blend-mode:overlay; opacity:.6;pointer-events:none}
+.hero-inner{position:relative;z-index:2;padding:130px 24px 64px;min-height:min(92vh, 880px);display:flex;flex-direction:column;justify-content:space-between}
+.hero-top{display:flex;justify-content:space-between;gap:24px;align-items:start}
+.hero-top .tag{
+  display:inline-flex;align-items:center;gap:10px;border:1px solid color-mix(in oklab, white 30%, transparent);
+  padding:8px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase
+}
+.hero-top .tag::before{content:"";width:6px;height:6px;background:var(--accent);display:inline-block;border-radius:50%}
+.hero-top .coords{font-family:var(--mono);font-size:11.5px;text-align:right;line-height:1.6;opacity:.85}
+.hero h1{
+  font-family:var(--sans);font-weight:600;font-size:clamp(56px, 8.6vw, 148px);line-height:.92;letter-spacing:-0.038em;
+  margin:0;color:var(--bg);max-width:1200px
+}
+.hero h1 em{font-family:var(--serif);font-style:italic;font-weight:500;color:color-mix(in oklab, var(--accent) 90%, white)}
+.hero h1 .slash{color:var(--accent);font-weight:400}
+.hero-body{display:grid;grid-template-columns:1.4fr 1fr;gap:64px;align-items:end;margin-top:20px}
+.hero-body p{font-size:19px;line-height:1.5;color:color-mix(in oklab, var(--bg) 90%, transparent);max-width:520px;margin:0}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.hero-actions .cta{background:var(--accent);border-color:var(--accent);color:var(--ink)}
+.hero-actions .cta:hover{background:var(--bg);border-color:var(--bg)}
+.hero-actions .cta.ghost{background:transparent;color:var(--bg);border-color:color-mix(in oklab, white 40%, transparent)}
+.hero-actions .cta.ghost:hover{background:var(--bg);color:var(--ink);border-color:var(--bg)}
+@media (max-width:820px){.hero-body{grid-template-columns:1fr;gap:24px}}
+
+.hero-bottom{
+  display:grid;grid-template-columns:repeat(4, 1fr);gap:0;border-top:1px solid color-mix(in oklab, white 18%, transparent);
+  margin-top:48px;padding-top:22px
+}
+.hero-stat{padding-right:22px;border-right:1px solid color-mix(in oklab, white 14%, transparent)}
+.hero-stat:last-child{border-right:0}
+.hero-stat .n{font-family:var(--sans);font-size:clamp(34px,4vw,54px);font-weight:500;letter-spacing:-0.02em;line-height:1}
+.hero-stat .n sup{font-family:var(--mono);font-size:13px;font-weight:500;vertical-align:top;margin-left:4px;color:var(--accent)}
+.hero-stat .l{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:color-mix(in oklab, var(--bg) 70%, transparent);margin-top:10px}
+@media (max-width:820px){.hero-bottom{grid-template-columns:repeat(2,1fr);gap:20px 0}.hero-stat{padding:14px 0;border-right:0;border-bottom:1px solid color-mix(in oklab, white 14%, transparent)}.hero-stat:last-child{border-bottom:0}}
+
+/* ---------- Marquee strip ---------- */
+.strip{background:var(--ink);color:var(--bg);overflow:hidden;border-bottom:1px solid color-mix(in oklab, white 8%, transparent)}
+.strip-track{display:flex;gap:48px;padding:18px 0;animation:slide 50s linear infinite;white-space:nowrap;font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:color-mix(in oklab, var(--bg) 80%, transparent)}
+.strip-track span::before{content:"◇";color:var(--accent);margin-right:46px;font-size:9px;vertical-align:middle}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- Intro: brief + meta ---------- */
+.intro{padding:96px 0 64px;background:var(--bg)}
+.intro-grid{display:grid;grid-template-columns:1fr 2fr;gap:48px;align-items:start}
+.intro h3{font-family:var(--sans);font-weight:500;font-size:clamp(28px,3.2vw,44px);line-height:1.05;letter-spacing:-0.025em;margin:0;max-width:680px;color:var(--ink)}
+.intro h3 em{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--accent-2)}
+.intro .meta{display:flex;flex-direction:column;gap:12px;border-left:1px solid var(--rule);padding-left:24px}
+.intro .meta div{display:grid;grid-template-columns: 100px 1fr;gap:14px;font-family:var(--mono);font-size:12px;color:var(--ink-2);align-items:baseline}
+.intro .meta div span:first-child{color:var(--ink-3);letter-spacing:.14em;text-transform:uppercase;font-size:10.5px}
+@media (max-width:820px){.intro-grid{grid-template-columns:1fr}}
+
+/* ---------- Services ---------- */
+#servicios{background:var(--bg)}
+.services{display:grid;grid-template-columns:repeat(12, 1fr);gap:24px;margin-top:56px}
+.svc{
+  grid-column:span 6;background:var(--paper);border:1px solid var(--rule);position:relative;
+  display:grid;grid-template-rows:auto auto 1fr auto;min-height:480px;overflow:hidden;
+  transition:transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s
+}
+.svc:nth-child(3){grid-column:span 12;grid-template-rows: 1fr; min-height:280px;display:grid;grid-template-columns: 1.2fr 1fr}
+.svc:nth-child(3) .svc-body{padding:38px}
+.svc:nth-child(3) .svc-img{position:relative;aspect-ratio: unset;min-height:280px;border-left:1px solid var(--rule);border-top:0}
+.svc:hover{transform:translateY(-3px);box-shadow:0 18px 40px -22px oklch(0.17 0.01 255 / .25)}
+.svc .corner{position:absolute;width:14px;height:14px;border-color:var(--ink);pointer-events:none}
+.svc .corner.tl{top:10px;left:10px;border-top:1.5px solid var(--ink);border-left:1.5px solid var(--ink)}
+.svc .corner.tr{top:10px;right:10px;border-top:1.5px solid var(--ink);border-right:1.5px solid var(--ink)}
+.svc .corner.bl{bottom:10px;left:10px;border-bottom:1.5px solid var(--ink);border-left:1.5px solid var(--ink)}
+.svc .corner.br{bottom:10px;right:10px;border-bottom:1.5px solid var(--ink);border-right:1.5px solid var(--ink)}
+.svc-img{position:relative;aspect-ratio: 16/9;overflow:hidden;border-bottom:1px solid var(--rule);background:var(--bg-3)}
+.svc-img .clip{position:absolute;inset:0;overflow:hidden}
+.svc-img .clip img{width:100%;height:100%;object-fit:cover;filter:saturate(.94)}
+.svc-img .num{position:absolute;left:18px;top:18px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--bg);background:var(--ink);padding:5px 9px;text-transform:uppercase}
+.svc-img .tag{position:absolute;right:18px;bottom:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--bg);background:var(--accent);color:var(--ink);padding:4px 8px;text-transform:uppercase}
+.svc-body{padding:30px 32px}
+.svc h3{font-family:var(--sans);font-weight:600;font-size:30px;letter-spacing:-0.02em;margin:0 0 10px;line-height:1.06}
+.svc h3 em{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--accent-2)}
+.svc p{margin:0;color:var(--ink-2);font-size:15px;line-height:1.55;max-width:54ch}
+.svc-list{list-style:none;margin:22px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}
+.svc-list li{font-family:var(--mono);font-size:11.5px;color:var(--ink-2);letter-spacing:.03em;display:flex;gap:8px;align-items:baseline}
+.svc-list li::before{content:"▸";color:var(--accent);font-size:9px}
+.svc-foot{padding:18px 32px;border-top:1px solid var(--rule);font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);display:flex;justify-content:space-between;align-items:center}
+.svc-foot a{color:var(--ink);display:inline-flex;gap:8px;align-items:center;transition:gap .2s}
+.svc-foot a:hover{gap:14px;color:var(--accent-2)}
+@media (max-width:900px){.svc{grid-column:span 12!important;grid-template-columns:1fr!important}.svc:nth-child(3) .svc-img{border-left:0;border-top:1px solid var(--rule)}}
+
+/* ---------- Projects ---------- */
+#proyectos{background:var(--bg-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.proj-controls{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:32px;flex-wrap:wrap}
+.proj-filters{display:flex;flex-wrap:wrap;gap:6px}
+.proj-filters button{
+  background:transparent;border:1px solid var(--rule-2);padding:8px 14px;font-family:var(--mono);font-size:11.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);border-radius:2px;transition:.2s
+}
+.proj-filters button:hover{border-color:var(--ink-2);color:var(--ink)}
+.proj-filters button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.proj-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.card{
+  grid-column:span 4;background:var(--paper);border:1px solid var(--rule);position:relative;overflow:hidden;
+  display:flex;flex-direction:column;transition:transform .35s cubic-bezier(.2,.7,.2,1)
+}
+.card:hover{transform:translateY(-3px)}
+.card.big{grid-column:span 8;grid-row:span 2}
+.card.wide{grid-column:span 8}
+.card.tall{grid-column:span 4;grid-row:span 2}
+.card-img{position:relative;flex:1;overflow:hidden;background:var(--bg-3);min-height:240px}
+.card.big .card-img{min-height:520px}
+.card.tall .card-img{min-height:540px}
+.card-img .clip{position:absolute;inset:0;overflow:hidden}
+.card-img .clip img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.card:hover .card-img .clip img{transform:scale(1.05)}
+.card-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, transparent 40%, oklch(0.17 0.01 255 / .82) 100%)}
+.card-meta{position:absolute;left:18px;top:18px;display:flex;gap:6px;z-index:2}
+.tag-pill{background:color-mix(in oklab, var(--ink) 80%, transparent);color:var(--bg);font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:5px 8px;backdrop-filter: blur(8px)}
+.tag-pill.accent{background:var(--accent);color:var(--ink)}
+.card-body{position:absolute;left:22px;right:22px;bottom:18px;z-index:2;color:var(--bg)}
+.card-body h4{font-family:var(--sans);font-weight:500;font-size:22px;letter-spacing:-0.015em;margin:0 0 4px;line-height:1.1}
+.card.big .card-body h4{font-size:32px}
+.card-body .where{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+.card-spec{position:absolute;right:18px;top:18px;font-family:var(--mono);font-size:10.5px;color:var(--bg);text-align:right;line-height:1.4;opacity:.85;z-index:2}
+@media (max-width:900px){.card,.card.big,.card.wide,.card.tall{grid-column:span 12}.card.big .card-img,.card.tall .card-img{min-height:320px}}
+
+/* ---------- Sectors ---------- */
+.sectors{background:var(--bg)}
+.sector-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:48px;border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.sec{padding:36px 28px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);position:relative;transition:background .25s}
+.sec:hover{background:var(--paper)}
+.sec .n{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--ink-3);text-transform:uppercase}
+.sec h4{font-family:var(--sans);font-weight:500;font-size:24px;letter-spacing:-0.015em;line-height:1.05;margin:18px 0 8px;color:var(--ink)}
+.sec p{font-size:14px;color:var(--ink-2);margin:0;line-height:1.5}
+.sec .ico{position:absolute;right:22px;top:24px;font-family:var(--mono);font-size:10px;color:var(--accent)}
+@media (max-width:900px){.sector-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.sector-grid{grid-template-columns:1fr}}
+
+/* ---------- Clients ---------- */
+.clients{background:var(--ink);color:var(--bg)}
+.clients .section-head{border-bottom-color:color-mix(in oklab, white 15%, transparent)}
+.clients .section-head h2{color:var(--bg)}
+.clients .section-head h2 em{color:color-mix(in oklab, var(--bg) 70%, transparent)}
+.clients .section-head p{color:color-mix(in oklab, var(--bg) 75%, transparent)}
+.clients .section-num{color:color-mix(in oklab, var(--bg) 60%, transparent)}
+.client-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin-top:48px;border-top:1px solid color-mix(in oklab, white 15%, transparent);border-left:1px solid color-mix(in oklab, white 15%, transparent)}
+.client{
+  border-right:1px solid color-mix(in oklab, white 15%, transparent);border-bottom:1px solid color-mix(in oklab, white 15%, transparent);
+  padding:30px 18px;min-height:130px;display:flex;flex-direction:column;justify-content:space-between;
+  transition:background .2s
+}
+.client:hover{background:color-mix(in oklab, white 4%, transparent)}
+.client .nm{font-family:var(--sans);font-weight:600;font-size:22px;letter-spacing:-0.015em;color:var(--bg)}
+.client .sct{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:color-mix(in oklab, var(--bg) 55%, transparent);margin-top:auto}
+@media (max-width:900px){.client-grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:560px){.client-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ---------- Quality / Certifications ---------- */
+.quality{background:var(--bg)}
+.q-wrap{display:grid;grid-template-columns: 1.05fr 1fr;gap:64px;margin-top:48px;align-items:start}
+@media (max-width:900px){.q-wrap{grid-template-columns:1fr;gap:36px}}
+.spec-sheet{border:1px solid var(--rule);padding:0;background:var(--paper);font-family:var(--mono);position:relative}
+.spec-sheet h5{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin:0;padding:16px 22px;border-bottom:1px solid var(--rule);display:flex;justify-content:space-between}
+.spec-sheet h5 .rev{color:var(--accent-2)}
+.spec-row{display:grid;grid-template-columns: 1fr auto;gap:14px;padding:14px 22px;border-bottom:1px dashed var(--rule-2);font-size:13px;align-items:baseline}
+.spec-row:last-child{border-bottom:0}
+.spec-row .k{color:var(--ink-3);text-transform:uppercase;letter-spacing:.1em;font-size:11px}
+.spec-row .v{color:var(--ink);font-weight:500}
+.spec-row .v.ok{color:var(--good)}
+.q-copy h3{font-family:var(--sans);font-weight:500;font-size:clamp(28px,3vw,40px);line-height:1.1;letter-spacing:-0.022em;margin:0 0 18px}
+.q-copy h3 em{font-family:var(--serif);font-style:italic;color:var(--accent-2);font-weight:500}
+.q-copy p{color:var(--ink-2);font-size:16px;line-height:1.6;max-width:48ch}
+.q-pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:24px}
+.q-pillars div{border-top:1px solid var(--rule);padding-top:14px}
+.q-pillars b{font-family:var(--sans);font-weight:600;font-size:15px;display:block;margin-bottom:2px}
+.q-pillars span{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);letter-spacing:.04em}
+
+/* ---------- Method ---------- */
+.method{background:var(--bg-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.method-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:48px;counter-reset:step}
+.step{padding:28px 22px 32px;border-right:1px solid var(--rule);position:relative;background:transparent}
+.step:last-child{border-right:0}
+.step .num{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--accent);text-transform:uppercase}
+.step h4{font-family:var(--sans);font-weight:500;font-size:22px;letter-spacing:-0.015em;line-height:1.1;margin:14px 0 8px}
+.step p{margin:0;color:var(--ink-2);font-size:13.5px;line-height:1.55}
+.step::after{content:"";position:absolute;top:38px;right:-7px;width:14px;height:14px;background:var(--bg-2);border-right:1px solid var(--rule);border-top:1px solid var(--rule);transform:rotate(45deg)}
+.step:last-child::after{display:none}
+@media (max-width:900px){.method-grid{grid-template-columns:1fr 1fr}.step{border-bottom:1px solid var(--rule)}.step::after{display:none}}
+@media (max-width:560px){.method-grid{grid-template-columns:1fr}}
+
+/* ---------- About ---------- */
+.about{background:var(--bg)}
+.about-grid{display:grid;grid-template-columns: 1.1fr 1fr;gap:64px;margin-top:48px;align-items:start}
+.about-grid p{font-size:16.5px;line-height:1.65;color:var(--ink-2);max-width:58ch}
+.about-grid p.lead{font-family:var(--serif);font-size:24px;line-height:1.35;color:var(--ink);font-weight:400}
+.values{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:36px}
+.values div{border-top:1px solid var(--rule);padding-top:14px}
+.values h5{font-family:var(--sans);font-weight:600;font-size:15px;margin:0 0 4px}
+.values span{font-family:var(--mono);font-size:11px;color:var(--ink-3);letter-spacing:.06em}
+.leader{position:relative;background:var(--paper);border:1px solid var(--rule);padding:0}
+.leader .photo{aspect-ratio:4/5;background:var(--bg-3);overflow:hidden;position:relative}
+.leader .photo .clip{position:absolute;inset:0;overflow:hidden}
+.leader .photo .clip img{width:100%;height:100%;object-fit:cover;filter:grayscale(.25)}
+.leader .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, transparent 60%, oklch(0.17 0.01 255 / .7) 100%)}
+.leader-info{padding:22px 24px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:end;gap:14px}
+.leader-info h4{font-family:var(--sans);font-weight:600;font-size:20px;letter-spacing:-0.015em;margin:0 0 2px}
+.leader-info span{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.leader-info .sig{font-family:var(--serif);font-style:italic;font-size:24px;color:var(--accent-2);letter-spacing:-0.01em}
+@media (max-width:900px){.about-grid{grid-template-columns:1fr;gap:48px}}
+
+/* ---------- Contact / RFQ ---------- */
+.contact{background:var(--ink);color:var(--bg);position:relative;overflow:hidden}
+.contact::before{content:"";position:absolute;inset:0;background-image:
+  linear-gradient(to right, color-mix(in oklab, white 5%, transparent) 1px, transparent 1px),
+  linear-gradient(to bottom, color-mix(in oklab, white 5%, transparent) 1px, transparent 1px);
+  background-size: 64px 64px; pointer-events:none
+}
+.contact .section-head{border-bottom-color:color-mix(in oklab, white 15%, transparent)}
+.contact .section-head h2{color:var(--bg)}
+.contact .section-head h2 em{color:color-mix(in oklab, var(--bg) 70%, transparent)}
+.contact .section-head p{color:color-mix(in oklab, var(--bg) 75%, transparent)}
+.contact .section-num{color:color-mix(in oklab, var(--bg) 60%, transparent)}
+.rfq{display:grid;grid-template-columns: 1.2fr 1fr;gap:64px;margin-top:48px;position:relative;z-index:2}
+@media (max-width:900px){.rfq{grid-template-columns:1fr;gap:36px}}
+.rfq-form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.field{display:flex;flex-direction:column;gap:8px}
+.field.full{grid-column:span 2}
+.field label{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:color-mix(in oklab, var(--bg) 65%, transparent)}
+.field input, .field textarea, .field select{
+  background:transparent;border:0;border-bottom:1px solid color-mix(in oklab, white 25%, transparent);
+  color:var(--bg);font-family:var(--sans);font-size:16px;padding:8px 0 10px;outline:none;transition:border-color .2s
+}
+.field input:focus, .field textarea:focus, .field select:focus{border-color:var(--accent)}
+.field textarea{resize:vertical;min-height:80px}
+.field select{appearance:none;background-image:linear-gradient(45deg,transparent 50%, var(--bg) 50%), linear-gradient(135deg, var(--bg) 50%, transparent 50%);background-position: calc(100% - 14px) 50%, calc(100% - 9px) 50%;background-size:5px 5px, 5px 5px;background-repeat:no-repeat}
+.field option{background:var(--ink)}
+.attach{
+  grid-column:span 2;display:flex;justify-content:space-between;align-items:center;gap:18px;
+  border:1px dashed color-mix(in oklab, white 25%, transparent);padding:18px 22px;margin-top:8px
+}
+.attach .l{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:color-mix(in oklab, var(--bg) 80%, transparent)}
+.attach .l b{display:block;color:var(--bg);font-family:var(--sans);font-size:14px;letter-spacing:0;margin-bottom:2px;font-weight:600}
+.attach input{display:none}
+.attach label.pick{background:var(--bg);color:var(--ink);padding:10px 16px;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;border:1px solid var(--bg);transition:.2s}
+.attach label.pick:hover{background:var(--accent);border-color:var(--accent)}
+.submit-row{grid-column:span 2;display:flex;gap:14px;align-items:center;margin-top:14px;flex-wrap:wrap}
+.submit-row .cta{background:var(--accent);border-color:var(--accent);color:var(--ink)}
+.submit-row .cta:hover{background:var(--bg);border-color:var(--bg)}
+.submit-row .note{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:color-mix(in oklab, var(--bg) 55%, transparent);max-width:300px;line-height:1.5}
+@media (max-width:560px){.rfq-form{grid-template-columns:1fr}.field.full,.attach,.submit-row{grid-column:span 1}}
+
+.contact-info{display:flex;flex-direction:column;gap:22px}
+.contact-info .block{border-top:1px solid color-mix(in oklab, white 18%, transparent);padding-top:18px}
+.contact-info .block .l{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:color-mix(in oklab, var(--bg) 55%, transparent);margin-bottom:8px}
+.contact-info .block .v{font-family:var(--sans);font-size:18px;font-weight:500;color:var(--bg);line-height:1.35}
+.contact-info .block .v a:hover{color:var(--accent)}
+.contact-info .block .v small{display:block;font-family:var(--mono);font-size:12px;font-weight:400;color:color-mix(in oklab, var(--bg) 75%, transparent);margin-top:4px;letter-spacing:.04em}
+
+.mini-map{margin-top:22px;border:1px solid color-mix(in oklab, white 18%, transparent);aspect-ratio:1.6/1;position:relative;background:
+  radial-gradient(circle at 60% 40%, color-mix(in oklab, var(--accent) 60%, transparent), transparent 40%),
+  linear-gradient(135deg, color-mix(in oklab, white 5%, transparent), transparent 60%);
+  overflow:hidden
+}
+.mini-map::before{content:"";position:absolute;inset:0;background-image:
+  linear-gradient(to right, color-mix(in oklab, white 8%, transparent) 1px, transparent 1px),
+  linear-gradient(to bottom, color-mix(in oklab, white 8%, transparent) 1px, transparent 1px);
+  background-size: 28px 28px}
+.mini-map .pin{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;background:var(--accent);border-radius:50%;box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 30%, transparent), 0 0 0 14px color-mix(in oklab, var(--accent) 8%, transparent); animation:pulse 2.4s ease-out infinite}
+.mini-map .label{position:absolute;left:50%;top:50%;transform:translate(20px,-26px);font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--bg);background:var(--ink);padding:4px 7px;border:1px solid color-mix(in oklab, white 20%, transparent)}
+
+/* ---------- Footer ---------- */
+footer{background:oklch(0.12 0.012 255);color:color-mix(in oklab, var(--bg) 75%, transparent);padding:64px 0 28px}
+.footer-grid{display:grid;grid-template-columns: 1.4fr 1fr 1fr 1fr;gap:32px;padding-bottom:48px;border-bottom:1px solid color-mix(in oklab, white 10%, transparent)}
+.footer-grid h6{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:color-mix(in oklab, var(--bg) 60%, transparent);margin:0 0 14px}
+.footer-grid ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.footer-grid a{color:color-mix(in oklab, var(--bg) 80%, transparent);font-size:14px;transition:color .2s}
+.footer-grid a:hover{color:var(--accent)}
+.footer-brand{max-width:380px}
+.footer-brand p{font-size:14px;line-height:1.6;color:color-mix(in oklab, var(--bg) 65%, transparent);margin:14px 0 0}
+.footer-bottom{display:flex;justify-content:space-between;gap:18px;padding-top:24px;font-family:var(--mono);font-size:11px;letter-spacing:.04em;flex-wrap:wrap}
+.footer-bottom .pulse{color:var(--good)}
+@media (max-width:780px){.footer-grid{grid-template-columns:1fr 1fr}}
+
+/* Mobile nav toggle (hidden, fallback) */
+.nav-toggle{display:none}
+@media (max-width:960px){.nav-toggle{display:inline-flex}}
+
+/* ---------- Reveal on scroll ---------- */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+</style>
+</head>
+<body>
+
+<!-- ============== TOP BAR ============== -->
+<div class="topbar">
+  <div class="group">
+    <span><span class="dot"></span>OPERATIVO · 35+ AÑOS EN MÉXICO</span>
+  </div>
+  <div class="group">
+    <span>NAUCALPAN · CDMX</span>
+    <span>UTC−6 · <span id="clock">--:--:--</span></span>
+    <span>RFQ: 24H</span>
+  </div>
+  <div class="group">
+    <span>(55) 26 37 60 40</span>
+  </div>
+</div>
+
+<!-- ============== NAV ============== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#inicio" class="brand">
+      <span class="mark">IE</span>
+      <span>
+        <span class="name">IEPI</span>
+        <span class="sub">Instrumentación & Electrosistemas</span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#sectores">Sectores</a>
+      <a href="#calidad">Calidad</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <a href="#contacto" class="cta">
+      Solicitar Cotización
+      <svg class="arrow" width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.4"/></svg>
+    </a>
+  </div>
+</nav>
+
+<!-- ============== HERO ============== -->
+<header class="hero" id="inicio">
+  <div class="bg"><img src="assets/photos/p07.png" alt="Instalaciones de tuberías y válvulas industriales" /></div>
+  <div class="grid-overlay"></div>
+  <div class="hero-inner container">
+    <div class="hero-top">
+      <div class="tag">Capítulo 2026 · Activo en 8 sectores</div>
+      <div class="coords">
+        19.499282° N&nbsp;&nbsp;99.231691° W<br/>
+        IEPI / S.A. DE C.V.<br/>
+        EST. 1990
+      </div>
+    </div>
+
+    <div>
+      <h1>Ingeniería<br/>de <em>precisión</em><br/>para la <span class="slash">/</span> industria.</h1>
+
+      <div class="hero-body">
+        <p>Instrumentación, electrosistemas y seguridad de proceso para refinerías, plantas de generación, farmacéuticas, automotrices y campos solares. Diseño, suministro, instalación y puesta en marcha — bajo dossier de calidad.</p>
+        <div class="hero-actions">
+          <a href="#servicios" class="cta">Ver capacidades <svg class="arrow" width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.4"/></svg></a>
+          <a href="#contacto" class="cta ghost">Solicitar RFQ</a>
+        </div>
+      </div>
+
+      <div class="hero-bottom">
+        <div class="hero-stat"><div class="n">35<sup>+</sup></div><div class="l">Años en operación</div></div>
+        <div class="hero-stat"><div class="n">200<sup>+</sup></div><div class="l">Proyectos ejecutados</div></div>
+        <div class="hero-stat"><div class="n">8</div><div class="l">Sectores industriales</div></div>
+        <div class="hero-stat"><div class="n">0</div><div class="l">Incidentes 2024</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============== STRIP ============== -->
+<div class="strip" aria-hidden="true">
+  <div class="strip-track">
+    <span>Petroquímica</span><span>Energía</span><span>Farmacéutica</span><span>Automotriz</span><span>Cementera</span><span>Alimentaria</span><span>Papelera</span><span>Química</span><span>Off-shore</span><span>Solar</span><span>Petroquímica</span><span>Energía</span><span>Farmacéutica</span><span>Automotriz</span><span>Cementera</span><span>Alimentaria</span><span>Papelera</span><span>Química</span><span>Off-shore</span><span>Solar</span>
+  </div>
+</div>
+
+<!-- ============== INTRO ============== -->
+<section class="intro">
+  <div class="container">
+    <div class="intro-grid">
+      <div class="eyebrow">§ 00 — Manifiesto</div>
+      <div>
+        <h3>Lo que hace funcionar a una planta no se ve. Pero <em>si falla, se detiene</em>. Existimos para que eso no ocurra.</h3>
+        <div class="intro-grid" style="grid-template-columns:1fr 1fr;gap:32px;margin-top:48px">
+          <div class="meta">
+            <div><span>Fundación</span><span>1990 — Ing. Víctor Vargas Carrillo</span></div>
+            <div><span>Sede</span><span>Naucalpan, Estado de México</span></div>
+            <div><span>Cobertura</span><span>Nacional · plataformas off-shore</span></div>
+          </div>
+          <div class="meta">
+            <div><span>Enfoque</span><span>Eléctrico · Instrumentación · F&G</span></div>
+            <div><span>Calidad</span><span>Dossier por proyecto · As-Built</span></div>
+            <div><span>Disponibilidad</span><span>RFQ respondido en 24h hábiles</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SERVICIOS ============== -->
+<section class="section" id="servicios">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num"><b>§ 01</b><span>— Capacidades</span></div>
+      <div>
+        <h2>Tres disciplinas. <em>Un solo</em> dossier.</h2>
+        <p style="margin-top:18px">Trabajamos como un solo equipo entre electricidad, instrumentación y seguridad — porque sus interfaces son donde aparecen los problemas. Cada servicio se entrega con plano As-Built, hojas de prueba firmadas y dossier de calidad por lazo.</p>
+      </div>
+    </div>
+
+    <div class="services">
+      <article class="svc reveal">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <div class="svc-img"><div class="clip"><img src="assets/photos/p35.png" alt="Cableado en celda de control" /></div>
+          <span class="num">SVC-01</span><span class="tag">Eléctrico</span>
+        </div>
+        <div class="svc-body">
+          <h3>Instalaciones <em>Eléctricas</em></h3>
+          <p>Baja y media tensión, desde la subestación hasta el tablero de control. Diseñamos para continuidad operativa y mantenibilidad.</p>
+          <ul class="svc-list">
+            <li>Tableros BT / MT</li>
+            <li>Charolas y conduit</li>
+            <li>Cableado estructurado</li>
+            <li>Red de tierras</li>
+            <li>Soportería</li>
+            <li>Acometidas y SE</li>
+          </ul>
+        </div>
+        <div class="svc-foot"><span>NORMA · NOM-001-SEDE / IEC 60364</span><a href="#contacto">Ficha técnica →</a></div>
+      </article>
+
+      <article class="svc reveal">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <div class="svc-img"><div class="clip"><img src="assets/photos/p13.png" alt="Personal calibrando instrumentos" /></div>
+          <span class="num">SVC-02</span><span class="tag">Instrumentación</span>
+        </div>
+        <div class="svc-body">
+          <h3><em>Instrumentación</em> de proceso</h3>
+          <p>Medición, control y registro con trazabilidad. Calibración con equipo certificado y pruebas de lazo documentadas pieza por pieza.</p>
+          <ul class="svc-list">
+            <li>Tableros DCS / PLC</li>
+            <li>Cajas de conexiones</li>
+            <li>Calibración certificada</li>
+            <li>Pruebas de lazo</li>
+            <li>Tendido fibra óptica</li>
+            <li>Loop check &amp; commissioning</li>
+          </ul>
+        </div>
+        <div class="svc-foot"><span>NORMA · ISA-5.1 / IEC 61511</span><a href="#contacto">Ficha técnica →</a></div>
+      </article>
+
+      <article class="svc reveal">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <div class="svc-body">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px"><span class="mono" style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)">SVC-03 · Seguridad</span></div>
+          <h3>Sistemas de <em>Fuego &amp; Gas</em></h3>
+          <p style="max-width:60ch">Protegemos personal y activos críticos: detección temprana, paros de emergencia y supresión integrada con la lógica de proceso. Ingeniería SIL evaluada por escenario.</p>
+          <ul class="svc-list" style="grid-template-columns:repeat(3,1fr)">
+            <li>Detección F&amp;G</li>
+            <li>Paros de emergencia (ESD)</li>
+            <li>Detección de humo</li>
+            <li>Supresión de fuego</li>
+            <li>Tableros de aviso</li>
+            <li>Cumplimiento SIL</li>
+          </ul>
+        </div>
+        <div class="svc-img"><div class="clip"><img src="assets/photos/p22.png" alt="Tablero de aviso de fuego y gas" /></div>
+          <span class="num">SVC-03</span><span class="tag">Seguridad</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============== METHOD ============== -->
+<section class="method section" style="padding:88px 0">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num"><b>§ 02</b><span>— Método</span></div>
+      <div>
+        <h2>De la <em>RFQ</em> a la puesta en marcha.</h2>
+        <p style="margin-top:18px">Un flujo de cinco etapas con entregables claros en cada paso. Sin sorpresas y sin tiempos muertos.</p>
+      </div>
+    </div>
+
+    <div class="method-grid reveal">
+      <div class="step">
+        <span class="num">M.01</span>
+        <h4>Levantamiento</h4>
+        <p>Visita en sitio, lectura de planos, identificación de interfaces y normativas aplicables.</p>
+      </div>
+      <div class="step">
+        <span class="num">M.02</span>
+        <h4>Ingeniería &amp; cotización</h4>
+        <p>Listas de materiales, lazos y memorias técnicas. Propuesta cerrada en 5–10 días hábiles.</p>
+      </div>
+      <div class="step">
+        <span class="num">M.03</span>
+        <h4>Suministro</h4>
+        <p>Procura nacional e importación con trazabilidad de origen y certificados de calidad.</p>
+      </div>
+      <div class="step">
+        <span class="num">M.04</span>
+        <h4>Instalación</h4>
+        <p>Equipo propio en sitio con HSE, supervisión QA/QC y protocolos firmados por etapa.</p>
+      </div>
+      <div class="step">
+        <span class="num">M.05</span>
+        <h4>Commissioning</h4>
+        <p>Pruebas de lazo, energizado, entrega de As-Built y dossier de calidad consolidado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PROYECTOS ============== -->
+<section class="section" id="proyectos">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num"><b>§ 03</b><span>— Obras</span></div>
+      <div>
+        <h2>Proyectos <em>emblemáticos</em>.</h2>
+        <p style="margin-top:18px">Una muestra acotada del trabajo entregado para clientes en energía, petroquímica, farmacéutica y manufactura.</p>
+      </div>
+    </div>
+
+    <div class="proj-controls" style="margin-top:48px">
+      <div class="proj-filters" id="filters">
+        <button class="on" data-f="all">Todos</button>
+        <button data-f="energia">Energía</button>
+        <button data-f="petro">Petroquímica</button>
+        <button data-f="solar">Solar</button>
+        <button data-f="manu">Manufactura</button>
+        <button data-f="off">Off-shore</button>
+      </div>
+      <div class="eyebrow">14 proyectos visibles · 200+ en archivo</div>
+    </div>
+
+    <div class="proj-grid" id="projGrid">
+      <article class="card big" data-cat="energia">
+        <div class="card-img"><div class="clip"><img src="assets/photos/p29.png" alt="Central térmica CFE" /></div></div>
+        <div class="card-meta"><span class="tag-pill accent">Energía</span><span class="tag-pill">2023</span></div>
+        <div class="card-spec">CONTRATO · EPC<br/>POT · 250 MW<br/>DURACIÓN · 14 meses</div>
+        <div class="card-body"><h4>Central de Ciclo Combinado — Estado de Sonora</h4><span class="where">Instalación eléctrica MT + instrumentación de planta</span></div>
+      </article>
+
+      <article class="card tall" data-cat="solar">
+        <div class="card-img"><div class="clip"><img src="assets/photos/p28.png" alt="Campo solar" /></div></div>
+        <div class="card-meta"><span class="tag-pill accent">Solar</span><span class="tag-pill">2022</span></div>
+        <div class="card-spec">CAMPO · 754 MW<br/>HECTÁREAS · 2200</div>
+        <div class="card-body"><h4>Villanueva — Campo solar</h4><span class="where">Cableado de campo · tableros de combinación</span></div>
+      </article>
+
+      <article class="card" data-cat="petro">
+        <div class="card-img"><div class="clip"><img src="assets/photos/p08.png" alt="Válvulas de instrumentación" /></div></div>
+        <div class="card-meta"><span class="tag-pill accent">Petroquímica</span></div>
+        <div class="card-body"><h4>Refinería Salamanca</h4><span class="where">Reinstrumentación · cierre de lazos</span></div>
+      </article>
+
+      <article class="card" data-cat="petro">
+        <div class="card-img"><div class="clip"><img src="assets/photos/p15.png" alt="Sensor H2S en planta" /></div></div>
+        <div class="card-meta"><span class="tag-pill accent">Petroquímica</span></div>
+        <div class="card-body"><h4>Refinería Cd. Madero</h4><span class="where">Detección H₂S · F&amp;G integrado</span></div>
+      </article>
+
+      <article class="card wide" data-cat="manu">
+        <div class="card-img"><div class="clip"><img src="assets/photos/p38.png" alt="Tablero de control eléctrico planta" /></div></div>
+        <div class="card-meta"><span class="tag-pill accent">Manufactura</span><span class="tag-pill">Farmacéutica</span></div>
+        <div class="card-spec">LÍNEAS · 4<br/>SLAs · 99.95%</div>
+        <div class="card-body"><h4>Planta farmacéutica — Toluca</h4><span class="where">Centro de carga, charolas y tableros de control</span></div>
+      </article>
+
+      <article class="card" data-cat="energia">
+        <div class="card-img"><div class="clip"><img src="assets/photos/p27.png" alt="Estructura industrial energía" /></div></div>
+        <div class="card-meta"><span class="tag-pill accent">Energía</span></div>
+        <div class="card-body"><h4>C.T. Rio Bravo IV</h4><span class="where">Soportería, charolas y cableado</span></div>
+      </article>
+
+      <article class="card" data-cat="solar">
+        <div class="card-img"><div class="clip"><img src="assets/photos/p25.png" alt="Estructura para campo solar" /></div></div>
+        <div class="card-meta"><span class="tag-pill accent">Solar</span></div>
+        <div class="card-body"><h4>Aura III · Aguascalientes</h4><span class="where">Trazado eléctrico de campo</span></div>
+      </article>
+
+      <article class="card" data-cat="off">
+        <div class="card-img"><div class="clip"><img src="assets/photos/p17.png" alt="Antena satelital instalación remota" /></div></div>
+        <div class="card-meta"><span class="tag-pill accent">Off-shore</span></div>
+        <div class="card-body"><h4>Plataforma marina · Sonda de Campeche</h4><span class="where">Telemetría · comunicación remota</span></div>
+      </article>
+
+      <article class="card" data-cat="manu">
+        <div class="card-img"><div class="clip"><img src="assets/photos/p36.png" alt="Conexión de tableros media tensión" /></div></div>
+        <div class="card-meta"><span class="tag-pill accent">Manufactura</span></div>
+        <div class="card-body"><h4>Planta automotriz · Bajío</h4><span class="where">Conexión MT y red de tierras</span></div>
+      </article>
+
+      <article class="card" data-cat="manu">
+        <div class="card-img"><div class="clip"><img src="assets/photos/p33.png" alt="Motor eléctrico WEG" /></div></div>
+        <div class="card-meta"><span class="tag-pill accent">Manufactura</span><span class="tag-pill">Alimentaria</span></div>
+        <div class="card-body"><h4>Planta alimentaria · Querétaro</h4><span class="where">Motores y arrancadores · variadores</span></div>
+      </article>
+
+      <article class="card" data-cat="petro">
+        <div class="card-img"><div class="clip"><img src="assets/photos/p20.png" alt="Estación de medición de gas combustible" /></div></div>
+        <div class="card-meta"><span class="tag-pill accent">Petroquímica</span></div>
+        <div class="card-body"><h4>Estación de medición — Coatzacoalcos</h4><span class="where">Detección de gas combustible</span></div>
+      </article>
+
+      <article class="card" data-cat="energia">
+        <div class="card-img"><div class="clip"><img src="assets/photos/p21.png" alt="Sensor H2S inteligente" /></div></div>
+        <div class="card-meta"><span class="tag-pill accent">Energía</span></div>
+        <div class="card-body"><h4>Hermosillo · planta de ciclo</h4><span class="where">Sensores H₂S inteligentes</span></div>
+      </article>
+
+      <article class="card" data-cat="petro">
+        <div class="card-img"><div class="clip"><img src="assets/photos/p34.png" alt="Operario en celda" /></div></div>
+        <div class="card-meta"><span class="tag-pill accent">Petroquímica</span></div>
+        <div class="card-body"><h4>Reinstalación celda 220 kV</h4><span class="where">Operación con planta en servicio</span></div>
+      </article>
+
+      <article class="card" data-cat="solar">
+        <div class="card-img"><div class="clip"><img src="assets/photos/p39.png" alt="Generador stand-by" /></div></div>
+        <div class="card-meta"><span class="tag-pill accent">Solar</span></div>
+        <div class="card-body"><h4>Stand-by · Agua Prieta II</h4><span class="where">Respaldo y BMS de banco de baterías</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SECTORES ============== -->
+<section class="section sectors" id="sectores">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num"><b>§ 04</b><span>— Sectores atendidos</span></div>
+      <div>
+        <h2>Donde la <em>tolerancia</em> es estrecha.</h2>
+        <p style="margin-top:18px">Industrias con normativas estrictas y procesos críticos. Ahí es donde IEPI se siente como en casa.</p>
+      </div>
+    </div>
+
+    <div class="sector-grid">
+      <div class="sec"><span class="ico">↗</span><span class="n">01 · ENERGÉTICA</span><h4>Energía</h4><p>Centrales de ciclo, térmicas y subestaciones eléctricas de alta y media tensión.</p></div>
+      <div class="sec"><span class="ico">↗</span><span class="n">02 · PETROQUÍMICA</span><h4>Petroquímica</h4><p>Refinerías, plantas de proceso, estaciones de medición y plataformas marinas.</p></div>
+      <div class="sec"><span class="ico">↗</span><span class="n">03 · QUÍMICA</span><h4>Química</h4><p>Procesos continuos con instrumentación crítica y áreas clasificadas.</p></div>
+      <div class="sec"><span class="ico">↗</span><span class="n">04 · FARMACÉUTICA</span><h4>Farmacéutica</h4><p>Manufactura validada GMP con trazabilidad documental completa.</p></div>
+      <div class="sec"><span class="ico">↗</span><span class="n">05 · ALIMENTARIA</span><h4>Alimentaria</h4><p>Líneas de producción con higiene operativa y eficiencia energética.</p></div>
+      <div class="sec"><span class="ico">↗</span><span class="n">06 · AUTOMOTRIZ</span><h4>Automotriz</h4><p>Plantas de ensamble, pintura y tratamiento — alto throughput.</p></div>
+      <div class="sec"><span class="ico">↗</span><span class="n">07 · CEMENTERA</span><h4>Cementera &amp; Papel</h4><p>Hornos, molinos y procesos abrasivos con instrumentación robusta.</p></div>
+      <div class="sec"><span class="ico">↗</span><span class="n">08 · RENOVABLES</span><h4>Solar &amp; Renovables</h4><p>Campos fotovoltaicos a gran escala y plantas termosolares.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CLIENTES ============== -->
+<section class="section clients">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num"><b>§ 05</b><span>— Clientes</span></div>
+      <div>
+        <h2>Operadores que <em>han confiado</em> en IEPI.</h2>
+        <p style="margin-top:18px">Una selección de clientes finales y EPCs con quienes hemos colaborado en proyectos de planta y campo en los últimos 35 años.</p>
+      </div>
+    </div>
+
+    <div class="client-grid">
+      <div class="client"><span class="nm">CFE</span><span class="sct">Energía</span></div>
+      <div class="client"><span class="nm">PEMEX</span><span class="sct">Petroquímica</span></div>
+      <div class="client"><span class="nm">ABB</span><span class="sct">EPC · Eléctrico</span></div>
+      <div class="client"><span class="nm">Abengoa</span><span class="sct">EPC · Solar</span></div>
+      <div class="client"><span class="nm">Acciona</span><span class="sct">EPC · Energía</span></div>
+      <div class="client"><span class="nm">Alstom</span><span class="sct">Generación</span></div>
+      <div class="client"><span class="nm">Avanzia</span><span class="sct">EPC</span></div>
+      <div class="client"><span class="nm">BASF</span><span class="sct">Química</span></div>
+      <div class="client"><span class="nm">Bayer</span><span class="sct">Farma · Química</span></div>
+      <div class="client"><span class="nm">Chrysler</span><span class="sct">Automotriz</span></div>
+      <div class="client"><span class="nm">Ford</span><span class="sct">Automotriz</span></div>
+      <div class="client"><span class="nm">GlaxoSmithKline</span><span class="sct">Farmacéutica</span></div>
+      <div class="client"><span class="nm">Kimberly-Clark</span><span class="sct">Papelera</span></div>
+      <div class="client"><span class="nm">Nestlé</span><span class="sct">Alimentaria</span></div>
+      <div class="client"><span class="nm">Pfizer</span><span class="sct">Farmacéutica</span></div>
+      <div class="client"><span class="nm">Sanofi</span><span class="sct">Farmacéutica</span></div>
+      <div class="client"><span class="nm">Schneider</span><span class="sct">Eléctrico</span></div>
+      <div class="client"><span class="nm">Telvent</span><span class="sct">Automatización</span></div>
+      <div class="client"><span class="nm">Saint-Gobain</span><span class="sct">Vidrio · Industrial</span></div>
+      <div class="client"><span class="nm">Pemex Refinación</span><span class="sct">Refino</span></div>
+      <div class="client"><span class="nm">Iberdrola</span><span class="sct">Energía</span></div>
+      <div class="client"><span class="nm">+ 30 más</span><span class="sct">Archivo extendido</span></div>
+      <div class="client"><span class="nm">RFQ →</span><span class="sct">Hable con nosotros</span></div>
+      <div class="client"><span class="nm">2026</span><span class="sct">Capacidad disponible</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CALIDAD ============== -->
+<section class="section quality" id="calidad">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num"><b>§ 06</b><span>— Calidad &amp; certificaciones</span></div>
+      <div>
+        <h2>Cada entregable, <em>auditable</em>.</h2>
+        <p style="margin-top:18px">Un dossier de calidad propio acompaña al alcance contractual: trazabilidad, listas de prueba, certificados de origen y planos As-Built de cierre.</p>
+      </div>
+    </div>
+
+    <div class="q-wrap">
+      <aside class="spec-sheet reveal" aria-label="Hoja técnica IEPI">
+        <h5><span>QA / QC · DOCUMENTO DE CONTROL</span><span class="rev">REV. 2026.01</span></h5>
+        <div class="spec-row"><span class="k">Sistema gestión</span><span class="v">ISO 9001 — equivalencia operativa</span></div>
+        <div class="spec-row"><span class="k">Dossier por proyecto</span><span class="v ok">Incluido</span></div>
+        <div class="spec-row"><span class="k">Pruebas de lazo</span><span class="v">100% documentadas</span></div>
+        <div class="spec-row"><span class="k">Calibración</span><span class="v">Equipo certificado · trazabilidad NIST</span></div>
+        <div class="spec-row"><span class="k">Áreas clasificadas</span><span class="v">Cumplimiento NOM-001-SEDE</span></div>
+        <div class="spec-row"><span class="k">Seguridad funcional</span><span class="v">IEC 61511 · SIL evaluado</span></div>
+        <div class="spec-row"><span class="k">F&amp;G</span><span class="v">NFPA 72 / API RP-14C</span></div>
+        <div class="spec-row"><span class="k">Plano As-Built</span><span class="v ok">Entregado al cierre</span></div>
+        <div class="spec-row"><span class="k">HSE en sitio</span><span class="v ok">Inducción + EPP + JSA</span></div>
+        <div class="spec-row"><span class="k">Tiempo respuesta RFQ</span><span class="v">≤ 24 h hábiles</span></div>
+        <div class="spec-row"><span class="k">Vigencia técnica</span><span class="v">Indefinida · revisión anual</span></div>
+      </aside>
+
+      <div class="q-copy reveal">
+        <h3>La diferencia entre <em>terminado</em> y entregado.</h3>
+        <p>Un cableado puede estar “terminado” y no haberse probado. Una válvula puede estar instalada y no estar calibrada. El dossier de calidad de IEPI cierra esa brecha: cada componente queda documentado, firmado y trazable, listo para auditoría operativa o regulatoria.</p>
+        <div class="q-pillars">
+          <div><b>Trazabilidad</b><span>Origen · lote · serie</span></div>
+          <div><b>Verificación</b><span>QA/QC independiente</span></div>
+          <div><b>Documentación</b><span>As-Built · firmas</span></div>
+          <div><b>Continuidad</b><span>Soporte post-arranque</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== ABOUT ============== -->
+<section class="section about" id="nosotros">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num"><b>§ 07</b><span>— Nosotros</span></div>
+      <div>
+        <h2>Tres décadas <em>en planta</em>.</h2>
+        <p style="margin-top:18px">No hacemos ingeniería desde un escritorio. La hacemos desde el campo, en arnés, con el plano sucio y la respuesta correcta.</p>
+      </div>
+    </div>
+
+    <div class="about-grid">
+      <div>
+        <p class="lead">IEPI nace en 1990 con una idea sencilla: una sola firma capaz de entregar la parte eléctrica, instrumental y de seguridad de una planta — bajo un mismo dossier de calidad. Hoy somos referencia en sectores donde el error no es opción.</p>
+        <p>Operamos con un núcleo técnico estable y equipos rotativos que se forman específicamente para cada proyecto. Nuestra ventaja no es el tamaño: es la decisión de no diluir el criterio técnico. Cada cotización pasa por ingeniería senior, y cada cierre por validación independiente.</p>
+        <div class="values">
+          <div><h5>Calidad</h5><span>En cada proceso, producto y servicio.</span></div>
+          <div><h5>Seguridad</h5><span>Prioridad sobre velocidad. Siempre.</span></div>
+          <div><h5>Compromiso</h5><span>Con clientes, entorno y sociedad.</span></div>
+          <div><h5>Innovación</h5><span>La mejor solución, no la habitual.</span></div>
+        </div>
+      </div>
+
+      <aside class="leader">
+        <div class="photo"><div class="clip"><img src="assets/photos/p09.png" alt="Equipo IEPI en obra" /></div></div>
+        <div class="leader-info">
+          <div>
+            <h4>Ing. Víctor Vargas Carrillo</h4>
+            <span>Director General · Fundador</span>
+          </div>
+          <span class="sig">v.v.c</span>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CONTACT ============== -->
+<section class="section contact" id="contacto">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num"><b>§ 08</b><span>— Contacto</span></div>
+      <div>
+        <h2>Pasemos del <em>plano</em> a la planta.</h2>
+        <p style="margin-top:18px">Adjunte planos, alcance o RFQ. Le respondemos en menos de 24 horas hábiles con un primer estimado técnico y comercial.</p>
+      </div>
+    </div>
+
+    <div class="rfq">
+      <form class="rfq-form" id="rfqForm" novalidate>
+        <div class="field"><label>Nombre completo</label><input required name="nombre" placeholder="Lic. María Hernández"/></div>
+        <div class="field"><label>Empresa</label><input required name="empresa" placeholder="Operadora del Bajío"/></div>
+        <div class="field"><label>Correo corporativo</label><input required type="email" name="email" placeholder="m.hernandez@empresa.com"/></div>
+        <div class="field"><label>Teléfono</label><input name="tel" placeholder="+52 ··"/></div>
+
+        <div class="field"><label>Servicio de interés</label>
+          <select name="servicio">
+            <option>Instalaciones Eléctricas</option>
+            <option>Instrumentación de Proceso</option>
+            <option>Sistemas de Fuego &amp; Gas</option>
+            <option>Calibración / As-Built</option>
+            <option>Proyecto integral · varios servicios</option>
+          </select>
+        </div>
+        <div class="field"><label>Sector</label>
+          <select name="sector">
+            <option>Energía</option><option>Petroquímica</option><option>Química</option>
+            <option>Farmacéutica</option><option>Alimentaria</option><option>Automotriz</option>
+            <option>Cementera</option><option>Papelera</option><option>Solar / Renovables</option><option>Otro</option>
+          </select>
+        </div>
+
+        <div class="field full"><label>Alcance preliminar</label>
+          <textarea required name="mensaje" rows="4" placeholder="Describa brevemente: ubicación, sistema, fechas tentativas, normativas aplicables..."></textarea>
+        </div>
+
+        <label class="attach" for="archivo">
+          <div class="l"><b>Adjuntar planos, RFQ o PID</b>PDF · DWG · ZIP · ≤ 25MB</div>
+          <input id="archivo" name="archivo" type="file" multiple />
+          <span class="pick">Seleccionar archivo</span>
+        </label>
+
+        <div class="submit-row">
+          <button type="submit" class="cta">Enviar solicitud
+            <svg class="arrow" width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.4"/></svg>
+          </button>
+          <span class="note">Al enviar acepta que IEPI le contacte para discutir su requerimiento.</span>
+        </div>
+      </form>
+
+      <aside class="contact-info">
+        <div class="block">
+          <div class="l">Oficina</div>
+          <div class="v">P.º del Verano 314<br/><small>La Florida · 53160 Naucalpan de Juárez · Estado de México</small></div>
+        </div>
+        <div class="block">
+          <div class="l">Teléfonos</div>
+          <div class="v"><a href="tel:+525526376040">(55) 26 37 60 40</a><br/><a href="tel:+525536174459">(55) 36 17 44 59</a></div>
+        </div>
+        <div class="block">
+          <div class="l">Correo</div>
+          <div class="v"><a href="mailto:info@iepi.com.mx">info@iepi.com.mx</a><br/><small>RFQ y cotizaciones: rfq@iepi.com.mx</small></div>
+        </div>
+        <div class="block">
+          <div class="l">Horario</div>
+          <div class="v">Lun – Vie · 09:00 – 18:00<br/><small>Operación 24/7 en obras activas</small></div>
+        </div>
+
+        <div class="mini-map" aria-hidden="true">
+          <div class="pin"></div>
+          <div class="label">NAUCALPAN · CDMX</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand">
+          <span class="mark" style="background:var(--bg);color:var(--ink)">IE</span>
+          <span><span class="name" style="color:var(--bg)">IEPI</span><span class="sub">S.A. de C.V. · Est. 1990</span></span>
+        </div>
+        <p>Instrumentación y Electrosistemas en Procesos Industriales. Ingeniería de precisión para la industria mexicana — diseño, suministro, instalación y puesta en marcha.</p>
+      </div>
+
+      <div>
+        <h6>Servicios</h6>
+        <ul>
+          <li><a href="#servicios">Eléctrico</a></li>
+          <li><a href="#servicios">Instrumentación</a></li>
+          <li><a href="#servicios">Fuego &amp; Gas</a></li>
+          <li><a href="#servicios">Calibración / As-Built</a></li>
+        </ul>
+      </div>
+      <div>
+        <h6>Empresa</h6>
+        <ul>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#calidad">Calidad</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#sectores">Sectores</a></li>
+        </ul>
+      </div>
+      <div>
+        <h6>Contacto</h6>
+        <ul>
+          <li><a href="#contacto">Solicitar RFQ</a></li>
+          <li><a href="tel:+525526376040">(55) 26 37 60 40</a></li>
+          <li><a href="mailto:info@iepi.com.mx">info@iepi.com.mx</a></li>
+          <li><a href="#contacto">Naucalpan, EDMX</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 1990 – 2026 IEPI S.A. de C.V. · Hecho en México.</div>
+      <div><span class="pulse">● </span>Sistema operativo — última actualización <span id="builtAt"></span></div>
+      <div>Aviso de privacidad · Términos</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ---------- Clock (Mexico City) ----------
+function tick(){
+  const d = new Date();
+  // Get hh:mm:ss in CDMX timezone
+  const fmt = new Intl.DateTimeFormat('es-MX', { hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false, timeZone:'America/Mexico_City' });
+  const el = document.getElementById('clock');
+  if(el) el.textContent = fmt.format(d);
+}
+tick(); setInterval(tick, 1000);
+
+// ---------- Built at ----------
+(function(){
+  const el = document.getElementById('builtAt');
+  if(!el) return;
+  const d = new Date();
+  el.textContent = d.toLocaleDateString('es-MX', { year:'numeric', month:'short', day:'2-digit' }).toUpperCase();
+})();
+
+// ---------- Project filters ----------
+const filters = document.getElementById('filters');
+const grid = document.getElementById('projGrid');
+if(filters && grid){
+  filters.addEventListener('click', e=>{
+    const b = e.target.closest('button');
+    if(!b) return;
+    [...filters.children].forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    const f = b.dataset.f;
+    [...grid.children].forEach(card=>{
+      const show = (f==='all') || (card.dataset.cat===f);
+      card.style.display = show ? '' : 'none';
+    });
+  });
+}
+
+// ---------- Reveal on scroll ----------
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, {threshold: .12});
+document.querySelectorAll('.reveal, .section-head, .svc, .card, .step, .sec, .client').forEach(el=>{
+  el.classList.add('reveal'); io.observe(el);
+});
+
+// ---------- File picker label ----------
+const fileInput = document.getElementById('archivo');
+if(fileInput){
+  fileInput.addEventListener('change', e=>{
+    const n = e.target.files?.length || 0;
+    const label = e.target.closest('.attach')?.querySelector('.l b');
+    if(label){ label.textContent = n ? `${n} archivo${n>1?'s':''} adjunto${n>1?'s':''}` : 'Adjuntar planos, RFQ o PID'; }
+  });
+}
+
+// ---------- Form submit (front-end demo) ----------
+const form = document.getElementById('rfqForm');
+if(form){
+  form.addEventListener('submit', e=>{
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    const original = btn.innerHTML;
+    btn.innerHTML = 'Solicitud enviada · gracias';
+    btn.style.background = 'var(--good)';
+    btn.style.borderColor = 'var(--good)';
+    btn.disabled = true;
+    setTimeout(()=>{ btn.innerHTML = original; btn.disabled=false; btn.style.background=''; btn.style.borderColor=''; form.reset(); }, 3200);
+  });
+}
+</script>
+</body>
+</html>
